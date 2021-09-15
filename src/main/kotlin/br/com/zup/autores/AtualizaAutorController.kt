@@ -34,7 +34,8 @@ class AtualizaAutorController(val autorRepository: AutorRepository) {
                 // Toda e qualquer alteração nele durante esse estado será posteriormente commitada ao banco.
                 // Isso ocorre ao fim do método, quando o @Transactional fecha a transação.
 
-            return HttpResponse.ok(DetalhesDoAutorResponse(autorAtualizado))
+//            return HttpResponse.ok(DetalhesDoAutorResponse(autorAtualizado))
+            return HttpResponse.ok(autorAtualizado.paraResponse())
         }
         return HttpResponse.badRequest("Nenhum dado válido foi inserido para atualizar o autor.")
 

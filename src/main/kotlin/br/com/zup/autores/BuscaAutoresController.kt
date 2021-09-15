@@ -23,7 +23,8 @@ class BuscaAutoresController(val autorRepository: AutorRepository) {
             email.isBlank() && nome.isBlank() -> {
                 val autores = autorRepository.findAll(
                     Pageable.from(0, 10, Sort.of(Sort.Order.asc("nome"))))
-                val resposta = autores.map { autor -> DetalhesDoAutorResponse(autor) }
+//                val resposta = autores.map { autor -> DetalhesDoAutorResponse(autor) }
+                val resposta = autores.map { autor -> autor.paraResponse() }
                 return HttpResponse.ok(resposta)
             }
             nome.isBlank() -> possivelAutor = autorRepository.buscaPorEmail(email)
@@ -39,7 +40,8 @@ class BuscaAutoresController(val autorRepository: AutorRepository) {
 
         val autor = possivelAutor.get()
 
-        return HttpResponse.ok(DetalhesDoAutorResponse(autor))
+//        return HttpResponse.ok(DetalhesDoAutorResponse(autor))
+        return HttpResponse.ok(autor.paraResponse())
 
     }
 

@@ -41,4 +41,10 @@ class Autor(
 //            )
         }
 
+    fun paraResponse() : DetalhesDoAutorResponse {
+        return DetalhesDoAutorResponse(
+            nome, email, descricao
+        )
+    }
+
     }
